@@ -1,0 +1,21 @@
+# ON commmence par fournir un nom
+name: Compilation du projet atelier-test-unitaires
+
+# LE on specifie a quel moment le workflow doit sexecute. Ici, on le fait au moment du push
+on:
+    push:
+
+jobs:
+  compilation: # Nom du premier job qui sexecute sur un runner Ubuntu
+    runs-on: ubuntu-latest
+    # Definiton des etapes du work-flow
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+      - name: Set up JDK 25
+        uses: actions/setup-java@v5
+        with:
+            java-version: '21'
+            distribution: 'temurin'
+      - name: Compilation du projet
+        run: ./mvnw compile 
