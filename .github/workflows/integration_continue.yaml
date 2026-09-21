@@ -23,3 +23,16 @@ jobs:
         run: ./mvnw compile 
       - name: Run des test unitaires
         run: ./mvnw test 
+      - name: Publier le rapport de tests
+        uses: actions/upload-artifact@v5
+        with:
+          name: rapport-surefire
+          path: target/surefire-reports/
+      - name: Build
+        run: ./mvnw -B clean package -DskipTests   # produit le .jar dans target/
+        
+      - name: Publier le .jar en artefact
+        uses: actions/upload-artifact@v5
+        with:
+          name: application-jar
+          path: target/*.jar          # ex. target/spring-petclinic-rest-*.jar
