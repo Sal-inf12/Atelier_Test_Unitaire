@@ -21,3 +21,5 @@ jobs:
         run: chmod +x mvnw
       - name: Compilation du projet
         run: ./mvnw compile 
+      - name: Run des test unitaires
+        run: ./mvnw test 
